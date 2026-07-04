@@ -185,17 +185,29 @@ async function scanDomain(domain) {
 }
 
 const FREE_LIMIT = 5;
-const PAID_LIMIT = 60;
-// Set this in Render's environment variables (Dashboard > your service > Environment).
-// Rotate it periodically — anyone who has ever bought a code can keep reusing it otherwise.
-const UNLOCK_CODE = process.env.UNLOCK_CODE || '';
+const TIER_25_LIMIT = 25;
+const TIER_60_LIMIT = 60;
+// Set these in Render's environment variables (Dashboard > your service > Environment).
+// Rotate periodically — anyone who has ever bought a code can keep reusing it otherwise.
+const TIER_25_CODE = process.env.TIER_25_CODE || '';
+const TIER_60_CODE = process.env.TIER_60_CODE || '';
+
+function resolveTier(submittedCode) {
+  if (TIER_60_CODE && submittedCode === TIER_60_CODE) {
+    return { limit: TIER_60_LIMIT, tier: 'tier60' };
+  }
+  if (TIER_25_CODE && submittedCode === TIER_25_CODE) {
+    return { limit: TIER_25_LIMIT, tier: 'tier25' };
+  }
+  return { limit: FREE_LIMIT, tier: 'free' };
+}
 
 app.post('/api/scan', async (req, res) => {
   try {
     const rawDomains = Array.isArray(req.body.domains) ? req.body.domains : [];
     const submittedCode = typeof req.body.unlockCode === 'string' ? req.body.unlockCode.trim() : '';
-    const isUnlocked = Boolean(UNLOCK_CODE) && submittedCode === UNLOCK_CODE;
-    const limit = isUnlocked ? PAID_LIMIT : FREE_LIMIT;
+    const { limit, tier } = resolveTier(submittedCode);
+    const isUnlocked = tier !== 'free';
 
     const domains = [...new Set(rawDomains.map(cleanDomain).filter(Boolean))].slice(0, limit);
 
@@ -218,6 +230,7 @@ app.post('/api/scan', async (req, res) => {
       count: results.length,
       results,
       limit,
+      tier,
       unlocked: isUnlocked,
       requestedCount: rawDomains.length
     });

@@ -58,6 +58,12 @@ html, body {
 
 .brand { display: flex; align-items: center; gap: 10px; }
 .brand-mark { border-radius: 8px; display: block; }
+.brand-wordmark {
+  height: 34px;
+  width: auto;
+  display: block;
+  object-fit: contain;
+}
 .brand-name {
   font-family: var(--display);
   font-weight: 800;
@@ -501,4 +507,42 @@ td.domain-cell { color: var(--ink); font-weight: 600; font-family: var(--display
 
 @media (max-width: 720px) {
   .price-cards { grid-template-columns: 1fr; }
+}
+
+/* --- Standalone pricing page --- */
+.pricing-page { margin-top: 40px; }
+.price-cards-3 {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+.price-note {
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--ink-dim);
+}
+.buy-btn-secondary {
+  background: transparent;
+  border: 1.5px solid var(--purple);
+  color: var(--purple);
+}
+.pricing-footnote {
+  text-align: center;
+  font-size: 12px;
+  color: var(--ink-dim);
+  margin-top: 32px;
+}
+.pricing-footnote a { color: var(--purple); }
+
+.foot-links {
+  margin-top: 8px;
+}
+.foot-links a {
+  color: var(--ink-dim);
+  font-size: 11px;
+  text-decoration: underline;
+}
+
+@media (max-width: 900px) {
+  .price-cards-3 { grid-template-columns: 1fr; }
 }

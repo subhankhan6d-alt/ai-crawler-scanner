@@ -82,9 +82,11 @@ async function runScan() {
     if (!res.ok) throw new Error(data.error || 'Scan failed');
 
     if (data.requestedCount > data.count && !data.unlocked) {
-      alert(`You submitted ${data.requestedCount} domains, but the free tier scans up to ${data.limit} at a time. Only the first ${data.count} were checked — paste an unlock code to scan more in one pass.`);
+      alert(`You submitted ${data.requestedCount} domains, but the free tier scans up to ${data.limit} at a time. Only the first ${data.count} were checked — see /pricing.html for a code to unlock 25 or 60 domains per scan.`);
     } else if (unlockCode.value.trim() && !data.unlocked) {
       alert('That unlock code was not recognized — running on the free 5-domain limit instead.');
+    } else if (data.requestedCount > data.count && data.unlocked) {
+      alert(`You submitted ${data.requestedCount} domains, but your unlocked tier caps at ${data.limit} per scan. Only the first ${data.count} were checked.`);
     }
 
     render(data.results);
