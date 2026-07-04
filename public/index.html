@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Batch GEO — Bulk AI Crawler Readiness Scanner</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+<div class="scanlines" aria-hidden="true"></div>
+
+<header class="topbar">
+  <div class="brand">
+    <span class="brand-mark">▣</span>
+    <span class="brand-name">Batch GEO</span>
+    <span class="brand-tag">AI crawler readiness scanner</span>
+  </div>
+  <div class="mode-badge">
+    <span class="dot live"></span>
+    <span>free · no API key</span>
+  </div>
+</header>
+
+<main>
+  <section class="intake">
+    <div class="intake-head">
+      <h1>Check if GPTBot, ClaudeBot &amp; Perplexity can actually read your sites — 20+ at once.</h1>
+      <p class="sub">One per line. We check robots.txt, llms.txt, structured data, and whether content survives without JavaScript — the four things that decide if AI answer engines can find and cite a page.</p>
+    </div>
+
+    <div class="intake-body">
+      <textarea id="domainInput" placeholder="example.com&#10;another-site.org&#10;yet-another.co&#10;...">example.com
+wikipedia.org
+github.com
+nytimes.com
+stackoverflow.com</textarea>
+
+      <div class="intake-actions">
+        <div class="count" id="domainCount">0 domains queued</div>
+        <button id="runBtn" class="run-btn">
+          <span class="run-btn-label">Run scan</span>
+          <span class="run-btn-glyph">→</span>
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <section class="results" id="resultsSection" hidden>
+    <div class="results-head">
+      <h2>Scan results</h2>
+      <div class="results-tools">
+        <span id="resultCount" class="result-count"></span>
+        <button id="exportBtn" class="export-btn">Export CSV</button>
+      </div>
+    </div>
+
+    <div class="table-wrap">
+      <table id="resultsTable">
+        <thead>
+          <tr>
+            <th data-sort="domain">Domain</th>
+            <th data-sort="score">Score</th>
+            <th>AI Bots Blocked</th>
+            <th data-sort="llmsTxt">llms.txt</th>
+            <th data-sort="schemaFound">Schema</th>
+            <th data-sort="metaOk">Meta</th>
+            <th data-sort="renderable">Renders w/o JS</th>
+          </tr>
+        </thead>
+        <tbody id="resultsBody"></tbody>
+      </table>
+    </div>
+  </section>
+
+  <section class="empty-state" id="emptyState">
+    <p>Scan results will populate here — paste a client list or prospect list and audit everyone's AI-crawler access in one pass.</p>
+  </section>
+</main>
+
+<footer class="foot">
+  <span>Checks are heuristic, not official spec validators — always spot-check important sites manually. Bot list current as of mid-2026; new AI crawlers appear periodically.</span>
+</footer>
+
+<script src="app.js"></script>
+</body>
+</html>
