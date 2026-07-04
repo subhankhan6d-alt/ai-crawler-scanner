@@ -1,4 +1,4 @@
-# CrawledByBots — Bulk AI Crawler Readiness Scanner
+# CrawledByBots – Bulk AI Crawler Checker for 20+ Websites
 
 Paste 20–60 domains, get back whether GPTBot, ClaudeBot, PerplexityBot,
 Google-Extended and other AI crawlers can actually read each site — in one
