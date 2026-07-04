@@ -184,10 +184,20 @@ async function scanDomain(domain) {
   return result;
 }
 
+const FREE_LIMIT = 5;
+const PAID_LIMIT = 60;
+// Set this in Render's environment variables (Dashboard > your service > Environment).
+// Rotate it periodically — anyone who has ever bought a code can keep reusing it otherwise.
+const UNLOCK_CODE = process.env.UNLOCK_CODE || '';
+
 app.post('/api/scan', async (req, res) => {
   try {
     const rawDomains = Array.isArray(req.body.domains) ? req.body.domains : [];
-    const domains = [...new Set(rawDomains.map(cleanDomain).filter(Boolean))].slice(0, 60);
+    const submittedCode = typeof req.body.unlockCode === 'string' ? req.body.unlockCode.trim() : '';
+    const isUnlocked = Boolean(UNLOCK_CODE) && submittedCode === UNLOCK_CODE;
+    const limit = isUnlocked ? PAID_LIMIT : FREE_LIMIT;
+
+    const domains = [...new Set(rawDomains.map(cleanDomain).filter(Boolean))].slice(0, limit);
 
     if (domains.length === 0) {
       return res.status(400).json({ error: 'No valid domains provided.' });
@@ -204,7 +214,13 @@ app.post('/api/scan', async (req, res) => {
       })
     );
 
-    res.json({ count: results.length, results });
+    res.json({
+      count: results.length,
+      results,
+      limit,
+      unlocked: isUnlocked,
+      requestedCount: rawDomains.length
+    });
   } catch (err) {
     console.error(err);
     res.status(500).json({ error: err.message || 'Server error' });

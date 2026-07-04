@@ -6,6 +6,7 @@ const emptyState = document.getElementById('emptyState');
 const resultsBody = document.getElementById('resultsBody');
 const resultCount = document.getElementById('resultCount');
 const exportBtn = document.getElementById('exportBtn');
+const unlockCode = document.getElementById('unlockCode');
 
 let lastResults = [];
 let sortKey = null;
@@ -75,10 +76,17 @@ async function runScan() {
     const res = await fetch('/api/scan', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ domains })
+      body: JSON.stringify({ domains, unlockCode: unlockCode.value.trim() })
     });
     const data = await res.json();
     if (!res.ok) throw new Error(data.error || 'Scan failed');
+
+    if (data.requestedCount > data.count && !data.unlocked) {
+      alert(`You submitted ${data.requestedCount} domains, but the free tier scans up to ${data.limit} at a time. Only the first ${data.count} were checked — paste an unlock code to scan more in one pass.`);
+    } else if (unlockCode.value.trim() && !data.unlocked) {
+      alert('That unlock code was not recognized — running on the free 5-domain limit instead.');
+    }
+
     render(data.results);
   } catch (err) {
     alert(`Scan failed: ${err.message}`);
