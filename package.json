@@ -1,5 +1,5 @@
 {
-  "name": "ai-crawler-readiness-scanner",
+  "name": "crawled-by-bots",
   "version": "1.0.0",
   "description": "Bulk AI crawler / GEO readiness scanner — checks robots.txt, llms.txt, schema, and renderability for many domains at once",
   "main": "server.js",
