@@ -4,6 +4,21 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>CrawledByBots — Bulk AI Crawler Readiness Scanner</title>
+<meta name="description" content="Check if GPTBot, ClaudeBot, PerplexityBot and other AI crawlers can actually read your sites — 20+ domains at once. Free, no signup, no API key.">
+<link rel="icon" type="image/svg+xml" href="/logo.svg">
+
+<!-- Open Graph / social sharing -->
+<meta property="og:type" content="website">
+<meta property="og:title" content="CrawledByBots — Bulk AI Crawler Readiness Scanner">
+<meta property="og:description" content="Check if GPTBot, ClaudeBot, PerplexityBot and other AI crawlers can actually read your sites — 20+ domains at once. Free, no signup.">
+<meta property="og:image" content="/logo.svg">
+
+<!-- Twitter card -->
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="CrawledByBots — Bulk AI Crawler Readiness Scanner">
+<meta name="twitter:description" content="Check if AI crawlers can read your sites — 20+ domains at once, free.">
+<meta name="twitter:image" content="/logo.svg">
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@500;600;700;800&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css" />
@@ -15,9 +30,15 @@
 
 <header class="topbar">
   <div class="brand">
-    <span class="brand-mark">🤖</span>
+    <img src="/logo.svg" alt="CrawledByBots logo" class="brand-mark" width="28" height="28">
     <span class="brand-name">CrawledByBots</span>
   </div>
+  <nav class="topnav">
+    <a href="#tool">Tool</a>
+    <a href="#how-it-works">How it works</a>
+    <a href="#why-bulk">Why bulk</a>
+    <a href="#faq">FAQ</a>
+  </nav>
   <div class="mode-badge">
     <span class="dot live"></span>
     <span>free · no API key</span>
@@ -25,7 +46,7 @@
 </header>
 
 <main>
-  <section class="intake">
+  <section class="intake" id="tool">
     <div class="intake-head">
       <h1>Check if GPTBot, ClaudeBot &amp; Perplexity can actually read your sites — 20+ at once.</h1>
       <p class="sub">One per line. We check robots.txt, llms.txt, structured data, and whether content survives without JavaScript — the four things that decide if AI answer engines can find and cite a page.</p>
@@ -77,6 +98,69 @@ stackoverflow.com</textarea>
 
   <section class="empty-state" id="emptyState">
     <p>Scan results will populate here — paste a client list or prospect list and audit everyone's AI-crawler access in one pass.</p>
+  </section>
+
+  <section class="how-it-works" id="how-it-works">
+    <h2 class="section-title">How it works</h2>
+    <div class="steps">
+      <div class="step-card">
+        <div class="step-num">1</div>
+        <h3>Paste your domains</h3>
+        <p>One per line — client sites, prospect lists, competitors, whatever list you're auditing. Up to 60 at once.</p>
+      </div>
+      <div class="step-card">
+        <div class="step-num">2</div>
+        <h3>We check what AI actually sees</h3>
+        <p>robots.txt rules for GPTBot/ClaudeBot/PerplexityBot, whether llms.txt exists, structured data, and whether content survives without JavaScript.</p>
+      </div>
+      <div class="step-card">
+        <div class="step-num">3</div>
+        <h3>Get a scored report</h3>
+        <p>Every domain gets a 0–100 readiness score you can sort, compare, and export straight to CSV.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="why-bulk" id="why-bulk">
+    <h2 class="section-title">Why check in bulk?</h2>
+    <div class="compare">
+      <div class="compare-col compare-them">
+        <h3>Other checkers</h3>
+        <ul>
+          <li>One domain at a time</li>
+          <li>Re-paste a URL for every client</li>
+          <li>No easy way to compare a list</li>
+        </ul>
+      </div>
+      <div class="compare-col compare-us">
+        <h3>CrawledByBots</h3>
+        <ul>
+          <li>Up to 60 domains in one pass</li>
+          <li>Built for agencies auditing a whole roster</li>
+          <li>Sortable table + CSV export, ready for a client report</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="faq" id="faq">
+    <h2 class="section-title">FAQ</h2>
+    <details>
+      <summary>Is this free?</summary>
+      <p>Yes. Every check pulls from public data (robots.txt, llms.txt, page HTML) — no paid API, no signup, no card.</p>
+    </details>
+    <details>
+      <summary>What exactly does the score measure?</summary>
+      <p>Whether major AI crawlers are blocked in robots.txt, whether llms.txt exists, whether structured data (schema) is present, whether basic meta tags are set, and whether the page has real content without needing JavaScript to render.</p>
+    </details>
+    <details>
+      <summary>Is this an official spec validator?</summary>
+      <p>No — these are heuristic checks meant to flag obvious problems quickly. Always spot-check anything important manually before acting on it.</p>
+    </details>
+    <details>
+      <summary>How often is the AI bot list updated?</summary>
+      <p>The list is current as of mid-2026. New AI crawlers appear periodically, so treat this as a snapshot, not a permanent spec.</p>
+    </details>
   </section>
 </main>
 

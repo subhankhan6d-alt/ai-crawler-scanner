@@ -56,7 +56,7 @@ html, body {
 }
 
 .brand { display: flex; align-items: center; gap: 10px; }
-.brand-mark { font-size: 22px; }
+.brand-mark { border-radius: 8px; display: block; }
 .brand-name {
   font-family: var(--display);
   font-weight: 800;
@@ -286,4 +286,127 @@ td.domain-cell { color: var(--ink); font-weight: 600; font-family: var(--display
   .intake-head h1 { font-size: 26px; }
   .table-wrap { overflow-x: auto; }
   table { min-width: 640px; }
+}
+
+/* --- Nav --- */
+.topnav {
+  display: flex;
+  gap: 22px;
+  font-family: var(--display);
+  font-weight: 600;
+  font-size: 13px;
+}
+.topnav a {
+  color: var(--ink-dim);
+  text-decoration: none;
+}
+.topnav a:hover { color: var(--purple); }
+
+/* --- Section titles --- */
+.section-title {
+  font-family: var(--display);
+  font-weight: 800;
+  font-size: 26px;
+  letter-spacing: -0.01em;
+  margin: 0 0 28px;
+  text-align: center;
+}
+
+/* --- How it works --- */
+.how-it-works { margin-top: 96px; }
+.steps {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+.step-card {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  padding: 26px 22px;
+  box-shadow: 0 10px 30px rgba(124,58,237,0.06);
+}
+.step-num {
+  width: 34px; height: 34px;
+  border-radius: 10px;
+  background: var(--grad);
+  color: #fff;
+  font-family: var(--display);
+  font-weight: 800;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 14px;
+}
+.step-card h3 {
+  font-family: var(--display);
+  font-size: 16px;
+  margin: 0 0 8px;
+}
+.step-card p {
+  font-size: 13px;
+  color: var(--ink-dim);
+  line-height: 1.6;
+  margin: 0;
+}
+
+/* --- Why bulk / comparison --- */
+.why-bulk { margin-top: 96px; }
+.compare {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+.compare-col {
+  border-radius: 16px;
+  padding: 26px 24px;
+}
+.compare-col h3 {
+  font-family: var(--display);
+  font-size: 16px;
+  margin: 0 0 14px;
+}
+.compare-col ul {
+  margin: 0;
+  padding-left: 20px;
+  font-size: 13px;
+  line-height: 1.9;
+}
+.compare-them {
+  background: #F6F3FC;
+  border: 1px solid var(--line);
+  color: var(--ink-dim);
+}
+.compare-us {
+  background: var(--grad);
+  color: #fff;
+}
+.compare-us ul { color: rgba(255,255,255,0.95); }
+
+/* --- FAQ --- */
+.faq { margin-top: 96px; }
+.faq details {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  padding: 16px 20px;
+  margin-bottom: 12px;
+}
+.faq summary {
+  font-family: var(--display);
+  font-weight: 700;
+  font-size: 14px;
+  cursor: pointer;
+}
+.faq p {
+  font-size: 13px;
+  color: var(--ink-dim);
+  line-height: 1.7;
+  margin: 12px 0 0;
+}
+
+@media (max-width: 720px) {
+  .topnav { display: none; }
+  .steps { grid-template-columns: 1fr; }
+  .compare { grid-template-columns: 1fr; }
 }
