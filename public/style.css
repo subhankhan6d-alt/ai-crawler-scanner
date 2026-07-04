@@ -9,8 +9,8 @@
   --yellow: #FFB020;
   --teal: #06C299;
   --grad: linear-gradient(135deg, #7C3AED 0%, #FF5D6C 100%);
-  --display: 'Outfit', system-ui, sans-serif;
-  --mono: 'IBM Plex Mono', ui-monospace, monospace;
+  --display: 'Poppins', system-ui, sans-serif;
+  --mono: 'Poppins', system-ui, sans-serif;
 }
 
 * { box-sizing: border-box; }
