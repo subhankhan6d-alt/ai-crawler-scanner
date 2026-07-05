@@ -546,3 +546,44 @@ td.domain-cell { color: var(--ink); font-weight: 600; font-family: var(--display
 @media (max-width: 900px) {
   .price-cards-3 { grid-template-columns: 1fr; }
 }
+
+/* --- Contact section --- */
+.contact { margin-top: 96px; }
+.contact-option {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  padding: 26px 24px;
+  margin-bottom: 20px;
+}
+.contact-option h3 {
+  font-family: var(--display);
+  font-size: 16px;
+  margin: 0 0 8px;
+}
+.contact-desc {
+  font-size: 13px;
+  color: var(--ink-dim);
+  margin: 0 0 16px;
+}
+.contact-form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.contact-form input,
+.contact-form textarea {
+  font-family: var(--mono);
+  font-size: 14px;
+  padding: 10px 14px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--bg);
+  color: var(--ink);
+  outline: none;
+  resize: vertical;
+}
+.contact-form input:focus,
+.contact-form textarea:focus { border-color: var(--purple); }
+.contact-form input::placeholder,
+.contact-form textarea::placeholder { color: #6B7190; }
