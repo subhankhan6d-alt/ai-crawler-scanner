@@ -9,6 +9,43 @@ const exportBtn = document.getElementById('exportBtn');
 const unlockCode = document.getElementById('unlockCode');
 const applyCodeBtn = document.getElementById('applyCodeBtn');
 const codeStatus = document.getElementById('codeStatus');
+async function applyCode() {
+  const code = unlockCode.value.trim();
+  if (!code) {
+    codeStatus.textContent = '';
+    return;
+  }
+  applyCodeBtn.disabled = true;
+  applyCodeBtn.textContent = 'Checking…';
+  try {
+    const res = await fetch('/api/verify-code', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ unlockCode: code })
+    });
+    const data = await res.json();
+    if (data.valid) {
+      codeStatus.textContent = `✓ Unlocked — up to ${data.limit} domains per scan`;
+      codeStatus.className = 'code-status code-status-valid';
+    } else {
+      codeStatus.textContent = '✕ Invalid code — still on the free 5-domain limit';
+      codeStatus.className = 'code-status code-status-invalid';
+    }
+  } catch (err) {
+    codeStatus.textContent = 'Could not check code — try again';
+    codeStatus.className = 'code-status code-status-invalid';
+  } finally {
+    applyCodeBtn.disabled = false;
+    applyCodeBtn.textContent = 'Apply';
+  }
+}
+applyCodeBtn.addEventListener('click', applyCode);
+unlockCode.addEventListener('keydown', (e) => {
+  if (e.key === 'Enter') {
+    e.preventDefault();
+    applyCode();
+  }
+});
 
 let lastResults = [];
 let sortKey = null;
