@@ -201,6 +201,11 @@ function resolveTier(submittedCode) {
   }
   return { limit: FREE_LIMIT, tier: 'free' };
 }
+app.post('/api/verify-code', (req, res) => {
+  const submittedCode = typeof req.body.unlockCode === 'string' ? req.body.unlockCode.trim() : '';
+  const { limit, tier } = resolveTier(submittedCode);
+  res.json({ valid: tier !== 'free', tier, limit });
+});
 
 app.post('/api/scan', async (req, res) => {
   try {
