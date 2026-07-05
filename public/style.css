@@ -225,7 +225,7 @@ thead th:hover { color: var(--purple); }
 
 tbody tr { border-bottom: 1px solid var(--line); }
 tbody tr:last-child { border-bottom: none; }
-tbody tr:hover { background: #FCFAFF; }
+tbody tr:hover { background: #1C2340; }
 tbody tr.entering { animation: rise 0.28s ease both; }
 @keyframes rise {
   from { opacity: 0; transform: translateY(4px); }
