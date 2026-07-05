@@ -7,6 +7,8 @@ const resultsBody = document.getElementById('resultsBody');
 const resultCount = document.getElementById('resultCount');
 const exportBtn = document.getElementById('exportBtn');
 const unlockCode = document.getElementById('unlockCode');
+const applyCodeBtn = document.getElementById('applyCodeBtn');
+const codeStatus = document.getElementById('codeStatus');
 
 let lastResults = [];
 let sortKey = null;
